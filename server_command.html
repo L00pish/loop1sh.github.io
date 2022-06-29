@@ -1,0 +1,152 @@
+<!-- disclaimer - This is for educational and informational purposes only. This is not for profit. -->
+
+<script>
+   function generate_command() {
+   	game_command = "startgame local_automatic "
+   	var all_elements = document.getElementsByTagName("*");
+   	for (var i=0, max=all_elements.length; i < max; i++) {
+   		element = all_elements[i];
+   		if (element.hasAttribute('id')) {
+			
+			if (element.id == 'name') {
+				game_command += element.value + " ";
+   			} else if (element.getAttribute('type') === 'checkbox') {
+			
+				if (element.checked) {
+					game_command += element.id + ":" + element.checked + " ";
+				}
+   			} else {
+   				game_command += element.id + ":" + element.value + " ";
+   			}
+   		}
+   	}
+   	command_box = document.getElementsByTagName('textarea')[0];
+   	command_box.value = game_command;
+   }
+</script>
+
+<h2>HoN Server Command Generator</h2>
+<p>
+   Match Name: <input id="name" value="DefaultName" />
+</p>
+<p>
+   Map: 
+   <select id="map">
+      <option value="caldavar">Forests of Caldavar</option>
+      <option value="midwars">Midwars</option>
+      <option value="grimmscrossing">Grimms Crossing</option>
+      <option value="riftwars">Rift Wars</option>
+      <option value="devowars">Devo Wars</option>
+      <option value="capturetheflag">Capture the Flag</option>
+      <option value="soccer">Strikers</option>
+	  <option value="prophets">Prophets</option>
+   </select>
+   <a href="https://www.heroesofnewerth.com/maps" target="_blank">map descriptions</a>
+</p>
+<p>
+   Mode: 
+   <select id="mode">
+      <option value="normal">All Pick</option>
+      <option value="singledraft">Single Draft</option>
+      <option value="randomdraft">Random Draft</option>
+      <option value="banningdraft">Banning Draft</option>
+      <option value="banningpick">Banning Pick</option>
+      <option value="lockpick">Lock Pick</option>
+      <option value="allrandom">All Random</option>
+      <option value="blindban">Blind Ban</option>
+      <option value="botmatch">Bot Match</option>
+      <option value="captainsmode">Captain's Pick</option>
+      <!-- <option value="deathmatch">Deathmatch</option>
+         <option value="krosmode">Krosmode</option> -->
+   </select>
+   <a href="https://hon.fandom.com/wiki/Game_Modes" target="_blank">game mode descriptions</a>
+</p>
+<p>
+   Max Team Size: 
+   <select id="teamsize">
+      <option value="5">5v5</option>
+      <option value="4">4v4</option>
+      <option value="3">3v3</option>
+      <option value="2">2v2</option>
+      <option value="1">1v1</option>
+   </select>
+</p>
+<p>
+   Max Spectators: 
+   <select id="spectators">
+      <option value="2">2</option>
+	  <option value="1">1</option>
+	  <option value="0">0</option>
+   </select>
+</p>
+<p>
+   Max Referees: 
+   <select id="referees">
+      <option value="2">2</option>
+	  <option value="1">1</option>
+	  <option value="0">0</option>
+   </select>
+</p>
+<p>
+   <input type="checkbox" id="alternatepicks" />
+   <label for="alternatepicks">Alternate Picks</label>
+</p>
+<p>
+   <input type="checkbox" id="norepick" />
+   <label for="norepick">No Repicks</label>
+</p>
+<p>
+   <input type="checkbox" id="noswap" />
+   <label for="noswap">No Swaps</label>
+</p>
+<p>
+   <input type="checkbox" id="norespawntimer" />
+   <label for="norespawntimer">Instant Respawn</label>
+</p>
+<p>
+   <input type="checkbox" id="allowduplicate" />
+   <label for="allowduplicate">Allow Duplicate Heroes</label>
+</p>
+<p>
+   <input type="checkbox" id="cheats" />
+   <label for="cheats">Enable Cheats</label>
+</p>
+<p>
+   <input type="checkbox" id="dropitems" />
+   <label for="dropitems">Drop Items on Death</label>
+</p>
+<p>
+   <input type="checkbox" id="easymode" />
+   <label for="easymode">Casual Mode</label>
+</p>
+<p>
+   <input type="checkbox" id="shuffleteams" />
+   <label for="shuffleteams">Shuffle Teams</label>
+</p>
+<p>
+   <input type="checkbox" id="reverseselect" />
+   <label for="reverseselect">Reverse Select</label>
+</p>
+<!--
+   private
+   noleaver
+   nostats
+   allheroes
+   noagility
+   nointelligence
+   nostrength
+   norespawntimer
+   nopowerups
+   notop
+   nomiddle
+   nobottom
+   allowveto
+   autobalance
+   devheroes
+   -->
+<p>
+   <button onclick="generate_command()">Generate Command</button>
+</p>
+<p>
+   <textarea style="width:800px"></textarea>
+</p>
