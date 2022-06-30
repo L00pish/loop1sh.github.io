@@ -2,24 +2,23 @@
 
 <html>
 <head>
+	<title>
+		HoN Server Command Builder
+	</title>
 	<script>
 	   function build_command() {
 		game_command = "startgame local_automatic "
-		var all_elements = document.getElementsByTagName("*");
-		for (var i=0, max=all_elements.length; i < max; i++) {
-			element = all_elements[i];
-			if (element.hasAttribute('id')) {
-				
-				if (element.id == 'name') {
-					game_command += '"' + element.value + '" ';
-				} else if (element.getAttribute('type') === 'checkbox') {
-				
-					if (element.checked) {
-						game_command += element.id + ":" + element.checked + " ";
-					}
-				} else {
-					game_command += element.id + ":" + element.value + " ";
+		var inputs = document.getElementsByClassName("input");
+		for (var i=0, max=inputs.length; i < max; i++) {
+			input = inputs[i];
+			if (input.id == 'name') {
+				game_command += '"' + input.value + '" ';
+			} else if (input.getAttribute('type') === 'checkbox') {
+				if (input.checked) {
+					game_command += input.id + ":" + input.checked + " ";
 				}
+			} else {
+				game_command += input.id + ":" + input.value + " ";
 			}
 		}
 		command_box = document.getElementsByTagName('textarea')[0];
@@ -31,11 +30,11 @@
 <body>
 <h2>HoN Server Command Builder</h2>
 <p>
-   Match Name: <input id="name" value="DefaultName" />
+   Match Name: <input class="input" id="name" value="DefaultName" />
 </p>
 <p>
    Map: 
-   <select id="map">
+   <select class="input" id="map">
       <option value="caldavar">Forests of Caldavar</option>
       <option value="midwars">Midwars</option>
       <option value="grimmscrossing">Grimms Crossing</option>
@@ -49,7 +48,7 @@
 </p>
 <p>
    Mode: 
-   <select id="mode">
+   <select class="input" id="mode">
       <option value="normal">All Pick</option>
       <option value="singledraft">Single Draft</option>
       <option value="randomdraft">Random Draft</option>
@@ -67,7 +66,7 @@
 </p>
 <p>
    Max Team Size: 
-   <select id="teamsize">
+   <select class="input" id="teamsize">
       <option value="5">5v5</option>
       <option value="4">4v4</option>
       <option value="3">3v3</option>
@@ -77,7 +76,7 @@
 </p>
 <p>
    Max Spectators: 
-   <select id="spectators">
+   <select class="input" id="spectators">
       <option value="2">2</option>
 	  <option value="1">1</option>
 	  <option value="0">0</option>
@@ -85,50 +84,50 @@
 </p>
 <p>
    Max Referees: 
-   <select id="referees">
+   <select class="input" id="referees">
       <option value="2">2</option>
 	  <option value="1">1</option>
 	  <option value="0">0</option>
    </select>
 </p>
 <p>
-   <input type="checkbox" id="alternatepicks" />
+   <input class="input" type="checkbox" id="alternatepicks" />
    <label for="alternatepicks">Alternate Picks</label>
 </p>
 <p>
-   <input type="checkbox" id="norepick" />
+   <input class="input" type="checkbox" id="norepick" />
    <label for="norepick">No Repicks</label>
 </p>
 <p>
-   <input type="checkbox" id="noswap" />
+   <input class="input" type="checkbox" id="noswap" />
    <label for="noswap">No Swaps</label>
 </p>
 <p>
-   <input type="checkbox" id="norespawntimer" />
+   <input class="input" type="checkbox" id="norespawntimer" />
    <label for="norespawntimer">Instant Respawn</label>
 </p>
 <p>
-   <input type="checkbox" id="allowduplicate" />
+   <input class="input" type="checkbox" id="allowduplicate" />
    <label for="allowduplicate">Allow Duplicate Heroes</label>
 </p>
 <p>
-   <input type="checkbox" id="cheats" />
+   <input class="input" type="checkbox" id="cheats" />
    <label for="cheats">Enable Cheats</label>
 </p>
 <p>
-   <input type="checkbox" id="dropitems" />
+   <input class="input" type="checkbox" id="dropitems" />
    <label for="dropitems">Drop Items on Death</label>
 </p>
 <p>
-   <input type="checkbox" id="easymode" />
+   <input class="input" type="checkbox" id="easymode" />
    <label for="easymode">Casual Mode</label>
 </p>
 <p>
-   <input type="checkbox" id="shuffleteams" />
+   <input class="input" type="checkbox" id="shuffleteams" />
    <label for="shuffleteams">Shuffle Teams</label>
 </p>
 <p>
-   <input type="checkbox" id="reverseselect" />
+   <input class="input" type="checkbox" id="reverseselect" />
    <label for="reverseselect">Reverse Select</label>
 </p>
 <!--
