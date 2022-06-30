@@ -3,7 +3,7 @@
 <html>
 <head>
 	<script>
-	   function generate_command() {
+	   function build_command() {
 		game_command = "startgame local_automatic "
 		var all_elements = document.getElementsByTagName("*");
 		for (var i=0, max=all_elements.length; i < max; i++) {
@@ -11,7 +11,7 @@
 			if (element.hasAttribute('id')) {
 				
 				if (element.id == 'name') {
-					game_command += element.value + " ";
+					game_command += '"' + element.value + '" ';
 				} else if (element.getAttribute('type') === 'checkbox') {
 				
 					if (element.checked) {
@@ -29,7 +29,7 @@
 </head>
 
 <body>
-<h2>HoN Server Command Generator</h2>
+<h2>HoN Server Command Builder</h2>
 <p>
    Match Name: <input id="name" value="DefaultName" />
 </p>
@@ -149,7 +149,7 @@
    devheroes
    -->
 <p>
-   <button onclick="generate_command();">Generate Command</button>
+   <button onclick="build_command();">Build Command</button>
    <button onclick="location.reload(true);">Reload</button>
 </p>
 <p>
